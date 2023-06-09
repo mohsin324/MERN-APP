@@ -1,0 +1,138 @@
+:root{
+  --primary-color: rgb(138, 233, 138);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #fff;
+  /* background-image: linear-gradient(270deg, #090979, #292754, #1a7183); */
+  background-image: linear-gradient(to right, #5a3f37, #2c7744);
+}
+/* Loading Error style */
+.loading, .error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+  border: 5px;
+  width: 50%;
+  margin: 0 auto;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  padding: 10rem;
+}
+/* End of Loading Error style */
+
+/* Navbar style starting line */
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem;
+  /* background-color: black; */
+  background-image: linear-gradient(270deg, black, gray);
+}
+.nav li{
+  list-style-type: none;
+  margin-left: .7rem;
+  padding: .2rem;
+
+}
+.nav li .link{
+  text-decoration: none;
+}
+.nav li:hover{
+  background-color: red;
+  border-radius: 5px;
+  transition: ease .1s;
+  transform: scale(1.1); 
+}
+/* Navbar style starting end */
+/* Home style */
+.home{
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  position: relative;
+}
+.home span{
+  right: 0;
+}
+/* End of Home style */
+/* workout style */
+.workout{
+  position: relative;
+  background-color: #f3f3f3;
+  margin: 2rem;
+  padding: .5rem;
+  width: 50%;
+  box-shadow: 0px 0px 10px green;
+}
+.workout h3 > span {
+  color: var(--primary-color)
+}
+.workout p > span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.workout > .btn-delete, .btn-update {
+  border-radius: 50%;
+  width: 5rem;
+  padding: .5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0px;
+  background-color: #fff;
+  cursor: pointer; 
+}
+.btn-update{
+  position: relative;
+}
+
+/* form-control style */
+.form{
+  /* padding: 10px 10px; */
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  right: 1.5rem;
+  top: 4em;
+  width: 30%;
+  background-color: #f3f3f3;
+}
+.form-control, .form button{
+  margin-top: 12px;
+}
+.form-control label, input, button{
+   display: block;
+   line-height: 1.4rem;
+   width: 100%;
+   border-radius: 5px;
+}
+.form-control label{
+  color: var(--primary-color);
+}
+.form-control input{
+  padding: .5rem;
+  outline: none;
+  border: solid rgba(red, green, blue, .5);
+}
+.form-control input:focus{
+  border: 2px solid var(--primary-color);
+}
+.form button {
+  padding: .5rem;
+  border: 0;
+  cursor: pointer;
+  background-color: #fff;
+}
