@@ -107,10 +107,10 @@ body{
   width: 30%;
 }
 .form-error{
-  background-color: red;
-  opacity: .4;
+  margin-top: .5rem;
   border: 1px solid red;
-  color: maroon;
+  color: red;
+  border-radius: 5px;
 }
 /* end */
 /* form-control style */
