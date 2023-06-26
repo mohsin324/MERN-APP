@@ -13,12 +13,14 @@ const schema = mongoose.Schema({
 // make user signup using static method
 schema.statics.signup = async function(email, password){
     // const exist = await this.findOne({ email });
+    // validate request
+    if(!email || !password){
+        throw new Error('All fields must be filled!')
+    }
+    // check user exist or not
     const exist = await this.findOne({email: email });
     if(exist){
         throw new Error('Email already exist!');
-    }
-    if(!email || !password){
-        throw new Error('All fields must be filled!')
     }
     // generate salt for adding into password
     const genSalt = await bcrypt.genSalt(10);

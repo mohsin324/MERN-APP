@@ -13,7 +13,9 @@ const LogIn = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(obj)
             });
+            console.log(postData)
             const response = await postData.json();
+            console.log(response)
             if (!postData.ok) {
                 setError(response.response.responseDescription)
             }
