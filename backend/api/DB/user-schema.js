@@ -29,14 +29,14 @@ schema.statics.signup = async function(email, password){
 }
 // make user login using static method
 schema.statics.signin = async function(email, password){
+    // check both email or password valid or not
+    if(!email || !password){
+        throw new Error('All fields must be filled!');
+    }
     // check exist or not
     const exist = await this.findOne({ email: email });
     if(!exist){
         throw new Error(`this user Email ${email} does not exist`);
-    }
-    // check both email or password valid or not
-    if(!email || !password){
-        throw new Error('All fields must be filled!');
     }
     // compare user password with DB password
     const match = bcrypt.compare(password, exist.password);
