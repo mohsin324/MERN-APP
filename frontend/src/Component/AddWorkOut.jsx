@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../App.css'
 // use global context
 import { UseGlobalContext } from "./GlobalContext/WorkoutContext";
 const AddWorkOut = () => {
@@ -6,28 +7,22 @@ const AddWorkOut = () => {
     const [workOut, setWorkOut] = useState('');
     const [reps, setReps] = useState(0);
     const [weight, setWeight] = useState(0);
-    const [ error, setError ] = useState('');
+    const [error, setError] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let obj = {
-            workout: workOut,
-            reps: reps,
-            weight: weight
-        }
         try {
+            let obj = { workout: workOut, reps, weight }
             const postData = await fetch('http://localhost:5000/api/v1/addWorkout/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(obj)
             });
             const response = await postData.json();
-            console.log(response, ' response post data ')
-            console.log(response.response, ' response response')
-            if(!postData.ok){
-                setError(true)
+            if (!postData.ok) {
+                setError(response.response.responseDescription)
             }
-            if(postData.ok){
-                setError(false);
+            if (postData.ok) {
+                setError('');
                 setReps(0);
                 setWeight(0);
                 setWorkOut('');
@@ -35,17 +30,15 @@ const AddWorkOut = () => {
             }
 
         } catch (err) {
-            setError(true)
-        }
-        if(error){
-            return <h1 className="loading">There is an Error</h1>
+            setError(err.message)
         }
     }
     return (
+        <div className="form-parent">
         <form className="form" onSubmit={handleSubmit}>
             {/* workout detail */}
             <div className="form-control">
-                <label htmlFor="workout-detail">Workout Detail:</label>
+                <label htmlFor="workout-detail">Workout Detail add workout:</label>
                 <input type='text' id="workout-detail" value={workOut} placeholder="work out detail" name="workout" onChange={(e) => setWorkOut(e.target.value)} />
             </div>
             {/* reps */}
@@ -58,8 +51,11 @@ const AddWorkOut = () => {
                 <label htmlFor="weigth">Weight Lose:</label>
                 <input type='number' id="weigth" value={weight} name="weight" onChange={(e) => setWeight(e.target.value)} />
             </div>
-            <button>Add WorkOut</button>
+            <button type="submit">Add WorkOut</button>
         </form>
+            { error && <div><h1 className="form-error">{error}</h1></div> }
+        </div>
+
     )
 }
 

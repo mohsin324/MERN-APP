@@ -98,16 +98,26 @@ body{
 .btn-update{
   position: relative;
 }
-
-/* form-control style */
-.form{
-  /* padding: 10px 10px; */
-  padding: 10px;
+/* form parent */
+.form-parent{
   border-radius: 5px;
   position: absolute;
   right: 1.5rem;
   top: 4em;
   width: 30%;
+}
+.form-error{
+  background-color: red;
+  opacity: .4;
+  border: 1px solid red;
+  color: maroon;
+}
+/* end */
+/* form-control style */
+.form{
+  /* padding: 10px 10px; */
+  padding: 10px;
+  
   background-color: #f3f3f3;
 }
 .form-control, .form button{

@@ -37,6 +37,7 @@ const Home = () => {
             <h1>Home</h1>
             {
                workout && workout.map((index) => {
+                console.log(index, ' index ')
                     return (
                         <Workout key={index._id} {...index} />
                     )

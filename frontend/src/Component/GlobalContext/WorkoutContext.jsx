@@ -14,6 +14,8 @@ const reducer = (state, action) => {
         case 'GET_WORKOUT':
             return { workout: action.payload.response}
         case 'POST_WORKOUT':
+            console.log(action.payload, ' action.payload.....');
+
             return {  workout: [...state.workout, action.payload] }
         case 'DELETE_WORKOUT':
             const newWorkout = state.workout.filter(id => {

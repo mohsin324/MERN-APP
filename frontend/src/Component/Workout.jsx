@@ -2,9 +2,8 @@ import React from "react";
 import { UseGlobalContext } from "./GlobalContext/WorkoutContext";
 import { Link } from 'react-router-dom';
 const Workout = (index) => {
-    console.log(UseGlobalContext());
     const { dispatch } = UseGlobalContext();
-    const handleDelete = async() => {
+    const handleDelete = async() => { 
         const deleteWorkout = await fetch(`http://localhost:5000/api/v1/deleteworkout/${index._id}`, {
             method: 'DELETE'
         })
@@ -19,9 +18,9 @@ const Workout = (index) => {
             <p><span>Reps:</span> {index.reps}</p>
             <p><span>Weight:</span> {index.weight}</p>
             <button className="btn-delete" onClick={ handleDelete}>Delete</button>
-            <button className="btn-update">
+            {/* <button className="btn-update">
                 <Link to={`updateworkout/${index._id}`}>Update</Link>
-            </button>
+            </button> */}
 
         </div>
     )
