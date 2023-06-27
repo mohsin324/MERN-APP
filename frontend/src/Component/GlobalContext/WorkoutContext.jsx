@@ -22,8 +22,6 @@ const reducer = (state, action) => {
                 return  id._id !== action.payload 
             })
             return { workout: [...newWorkout]}
-            
-            
         default: 
             return state
     }

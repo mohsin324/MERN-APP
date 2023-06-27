@@ -1,33 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+// custom hook
+import { useLogIn } from "../../Hook/LogInHook";
 const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const { error, logIn } = useLogIn();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            let obj = { email, password }
-            const postData = await fetch('http://localhost:5000/api/v1/user/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(obj)
-            });
-            console.log(postData)
-            const response = await postData.json();
-            console.log(response)
-            if (!postData.ok) {
-                setError(response.response.responseDescription)
-            }
-            if (postData.ok) {
-                setError('');
-                setEmail('');
-                setPassword('');
-            }
-
-        } catch (err) {
-            setError(err.message)
-        }
+        await logIn(email, password);
     }
     return (
         <div className="login-form">

@@ -12,7 +12,6 @@ const schema = mongoose.Schema({
 });
 // make user signup using static method
 schema.statics.signup = async function(email, password){
-    // const exist = await this.findOne({ email });
     // validate request
     if(!email || !password){
         throw new Error('All fields must be filled!')
@@ -41,7 +40,9 @@ schema.statics.signin = async function(email, password){
         throw new Error(`this user Email ${email} does not exist`);
     }
     // compare user password with DB password
-    const match = bcrypt.compare(password, exist.password);
+    console.log(exist, ' user exist ')
+    console.log('password '+password)
+    const match = await bcrypt.compare(password, exist.password);
     // not valid user
     if(!match){
         throw new Error('Password does not matched!');
