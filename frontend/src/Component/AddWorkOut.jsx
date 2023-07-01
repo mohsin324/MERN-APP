@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import '../App.css'
 // use global context
 import { UseGlobalContext } from "./GlobalContext/WorkoutContext";
+// use auth context
+import { UseAuthContext } from './GlobalContext/AuthContext';
+// action
+import { POST_WORKOUT } from "./Action/Action";
 const AddWorkOut = () => {
     const { dispatch } = UseGlobalContext();
+    const { user } = UseAuthContext();
     const [workOut, setWorkOut] = useState('');
     const [reps, setReps] = useState(0);
     const [weight, setWeight] = useState(0);
@@ -14,7 +19,11 @@ const AddWorkOut = () => {
             let obj = { workout: workOut, reps, weight }
             const postData = await fetch('http://localhost:5000/api/v1/addWorkout/', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${user.token}`
+                 },
+                authorization: {},
                 body: JSON.stringify(obj)
             });
             const response = await postData.json();
@@ -26,7 +35,7 @@ const AddWorkOut = () => {
                 setReps(0);
                 setWeight(0);
                 setWorkOut('');
-                dispatch({ type: 'POST_WORKOUT', payload: response.response })
+                dispatch({ type: POST_WORKOUT, payload: response.response })
             }
 
         } catch (err) {

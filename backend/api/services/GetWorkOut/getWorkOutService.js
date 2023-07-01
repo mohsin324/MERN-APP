@@ -1,8 +1,13 @@
 const mongoDBSchema = require('../../DB/schema');
 const service = (req, res, next) => {
     return new Promise(async(resolve, reject) => {
+        const  userID  = req.user;
+        const { _id } = userID
+        console.log('_id '+ _id)
+        // console.log(user_id + ' user_id ');
+        console.log(req.user+' req.user ')
         try {
-            const findWorkOut = await mongoDBSchema.find();
+            const findWorkOut = await mongoDBSchema.find({ user_id: _id});
             console.log(findWorkOut, '---------find all workout--------');
             if(!findWorkOut){
                 serviceResponse = {

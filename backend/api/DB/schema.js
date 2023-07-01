@@ -11,6 +11,10 @@ const schema = mongoose.Schema({
     workout:{
         required: true,
         type: String
+    },
+    user_id: {
+        required: true,
+        type: String
     }
 })
 

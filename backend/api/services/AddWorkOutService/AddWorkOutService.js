@@ -1,11 +1,13 @@
 const mongoDBSchema = require('../../DB/schema');
 const service = async (req, res, next) => {
-    console.log('----------------inside workout service------------')
+    console.log('----------------inside workout service------------');
+    console.log(req.user+' ------- req.user -------')
     return new Promise(async (resolve, reject) => {
-        console.log(req.body)
         let serviceResponse = {}
         try {
-            const addSingleWorkout = await mongoDBSchema.create(req.body);
+            const { workout, reps, weight } = req.body;
+            const { _id } = req.user;
+            const addSingleWorkout = await mongoDBSchema.create({ workout, reps, weight, user_id: _id });
             if(!addSingleWorkout){
                 console.log(addSingleWorkout, '---------add single workout--------')
                 serviceResponse = {
